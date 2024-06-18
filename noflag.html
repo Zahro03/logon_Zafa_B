@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Login</title>
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://getbootstrap.com/docs/3.3/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active"><a href="/">Home</a>
+                    </li>
+                    <li role="presentation"><a href="/logout" class="btn btn-link pull-right">Sign Out</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">My Login</h3>
+        </div>
+        
+        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+        
+        
+        <div class="alert alert-success alert-dismissible" role="alert" id="myAlert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <!-- <strong>Title</strong> --> Success: You logged in! Not sure you&#39;ll be able to see the flag though.
+            </div>
+      
+      
+      
+        <div class="jumbotron">
+            <p class="lead"></p>
+            <p style="text-align:center; font-size:30px;"><b>No flag for you</b></p>
+        </div>
+
+
+        <footer class="footer">
+            <p>&copy; Zafa 2024</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+
+        // Function to get a cookie
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+
+        // Set initial cookie value to false
+        setCookie("admin", "false");
+
+        // Check the value of the admin cookie on page load
+        window.onload = function() {
+            var adminValue = getCookie("admin");
+            if (adminValue === "true") {
+                window.location.href = "flag.html"; // Redirect to flag.html if admin cookie is true
+            }
+        }
+
+        $(document).ready(function() {
+            $(".close").click(function() {
+                $("#myAlert").alert("close");
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
